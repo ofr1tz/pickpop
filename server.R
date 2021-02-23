@@ -17,7 +17,8 @@ server <- function(input, output, session) {
 	
 	# prepare map
 	output$map <- renderLeaflet({
-		leaflet() %>% 
+		leaflet(options = leafletOptions(zoomControl = FALSE)) %>% 
+			htmlwidgets::onRender("function(el, x) { L.control.zoom({ position: 'topright' }).addTo(this) }") %>%
 			addProviderTiles(providers$CartoDB.Positron) %>%
 			addTiles(urlTemplate = "", attribution = pop_attribution) %>%
 			setView(10, 25, zoom = 3)
