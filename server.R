@@ -2,9 +2,9 @@ server <- function(input, output, session) {
 	
 	# get pop data with geometry from api
 	response <- reactive({
-		lon <- ifelse(is.na(input$lon), 0, input$lon)
-		lat <- ifelse(is.na(input$lat), 0, input$lat)
-		
+		lat <- replace_na(input$lat, 0)
+		lon <- replace_na(input$lon, 0)
+
 		url <- glue(
 			"https://api.oliverfritz.de/exact_extract/circle/worldpop",
 			"?lon={lon}",
@@ -39,8 +39,13 @@ server <- function(input, output, session) {
 		click <- input$map_click
 		if(is.null(click)) return()
 		
-		updateNumericInput(session, "lat", value = round(click$lat, 6))
-		updateNumericInput(session, "lon", value = round(click$lng, 6))
+		clicklat <- click$lat
+		clicklon <- click$lng
+		if(clicklon > 180) clicklon <-  clicklon-360
+		if(clicklon < -180) clicklon <-  clicklon+360
+		
+		updateNumericInput(session, "lat", value = round(clicklat, 6))
+		updateNumericInput(session, "lon", value = round(clicklon, 6))
 	})
 	
 	# print pop

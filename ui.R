@@ -9,12 +9,14 @@ ui <- bootstrapPage(
 		top = 20, right = 20, draggable = T,
 		titlePanel("pickPop"),
 		helpText(
-			"Click on the map, choose a buffer size", br(), 
-			"and find out how many people live in", br(), 
-			"the area."
+			"Click on the map, choose a radius", br(), 
+			"and find out how many people live", br(), 
+			"in the area."
 		),
-		numericInput("lat", "Latitude", value = 0, min = -90, max = 90),
-		numericInput("lon", "Longitude", value = 0, min = -180, max = 180),
+		splitLayout(
+		numericInput("lat", "Latitude", value = 0, min = -90, max = 90, width = 110),
+		numericInput("lon", "Longitude", value = 0, min = -180, max = 180, width = 110)
+		),
 		sliderInput("radius", "Buffer Radius (km)", value = 100, min = 1, max = 1000, step = .1, ticks = F),
 		textOutput("pop"),
 		tags$head(tags$style("#pop{font-size: 25px;font-style: bold;}"))
