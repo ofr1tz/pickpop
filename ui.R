@@ -1,6 +1,7 @@
 ui <- bootstrapPage(
 	setBackgroundColor("#D4DADC"), 
-	chooseSliderSkin("Flat"),
+	# chooseSliderSkin("Flat"), # leads to unknown error on server
+	setSliderColor("DodgerBlue", 1),
 	tags$head(tags$style(HTML('html, body {width:100%;height:100%; font-family:Consolas, "Ubuntu Mono", monospace;}'))),
 	leafletOutput("map", width = "100%", height = "100%"),
 	absolutePanel(
