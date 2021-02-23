@@ -21,7 +21,8 @@ server <- function(input, output, session) {
 			htmlwidgets::onRender("function(el, x) { L.control.zoom({ position: 'topright' }).addTo(this) }") %>%
 			addProviderTiles(providers$CartoDB.Positron) %>%
 			addTiles(urlTemplate = "", attribution = pop_attribution) %>%
-			setView(10, 25, zoom = 3)
+			setView(10, 25, zoom = 3) %>%
+			setMaxBounds(lng1 = -180, lat1 = 90, lng2 = 180, lat2 = -90)
 	})
 	
 	# update map
