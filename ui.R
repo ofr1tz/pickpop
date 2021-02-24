@@ -14,8 +14,8 @@ ui <- bootstrapPage(
 		width = 275, top = 20, left = 30, draggable = T,
 		titlePanel("pickPop"),
 		helpText(
-			"Click on the map, choose a radius", br(), 
-			"and find out how many people live", br(), 
+			"Click on the map, choose a radius ",
+			"and find out how many people live ", 
 			"in the area."
 		),
 		fixedRow(
