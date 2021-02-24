@@ -52,7 +52,8 @@ server <- function(input, output, session) {
 	
 	# print pop
 	output$pop <- renderText({
-		glue("{format(round(response()$sum.worldpop2020), big.mark = ',')} people")
+		people <- round(response()$sum.worldpop2020)
+		glue("{format(people, big.mark = ',')} {ifelse(people == 1, 'person', 'people')}")
 	})
 	
 
