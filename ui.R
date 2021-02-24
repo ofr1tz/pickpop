@@ -1,11 +1,13 @@
 ui <- bootstrapPage(
 	
 	useShinyjs(),
-	setBackgroundColor("#D4DADC"), 
-	# leads to unknown error on server:
-	# chooseSliderSkin("Flat"), 
+	setBackgroundColor("#d4dadc"), 
 	setSliderColor("DodgerBlue", 1),
-	tags$head(tags$style(HTML('html, body {width:100%;height:100%; font-family:Consolas, "Ubuntu Mono", monospace;}'))),
+	tags$head(
+		tags$style(HTML(
+			'html, body {width:100%;height:100%; font-family:Consolas, "Ubuntu Mono", monospace;}',
+			'.leaflet-container { background: #d4dadc; }'
+	))),
 	mobileDetect("isMobile"),
 	
 	leafletOutput("map", width = "100%", height = "100%"),
