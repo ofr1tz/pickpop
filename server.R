@@ -1,5 +1,8 @@
 server <- function(input, output, session) {
 	
+	# hide lat/lon numeric input on mobile
+	observe({ toggleElement(id = "latlon", condition = !input$isMobile) })
+	
 	# get pop data with geometry from api
 	response <- reactive({
 		lat <- replace_na(input$lat, 0)
@@ -18,7 +21,9 @@ server <- function(input, output, session) {
 	# prepare map
 	output$map <- renderLeaflet({
 		leaflet(options = leafletOptions(zoomControl = FALSE)) %>% 
-			htmlwidgets::onRender("function(el, x) { L.control.zoom({ position: 'topright' }).addTo(this) }") %>%
+			htmlwidgets::onRender(
+				"function(el, x) { L.control.zoom({ position: 'topright' }).addTo(this) }"
+			) %>%
 			addProviderTiles(providers$CartoDB.Positron) %>%
 			addTiles(urlTemplate = "", attribution = pop_attribution) %>%
 			setView(10, 25, zoom = 3) %>%
@@ -30,7 +35,6 @@ server <- function(input, output, session) {
 		leafletProxy("map", data = response()) %>%
 			addPolygons(
 				layerId = ~id, 
-				# label = ~paste0(name, ": ", case_when(mobility > 0 ~ "+", mobility < 0 ~ "-", TRUE ~ ""), abs(mobility), "%"),
 				fillColor =  "DodgerBlue",
 				stroke = F, fillOpacity = .66
 			)

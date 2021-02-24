@@ -5,6 +5,7 @@ require(glue)
 require(leaflet)
 require(shiny)
 require(shinyWidgets)
+require(shinyjs)
 
 require(conflicted)
 conflict_prefer("addLegend", "leaflet")
@@ -18,3 +19,11 @@ pop_attribution = paste0(
 	")"
 	
 )
+
+# detect mobile (https://github.com/g3rv4/mobileDetect)
+mobileDetect <- function(inputId, value = 0) {
+	tagList(
+		singleton(tags$head(tags$script(src = "mobile.js"))),
+		tags$input(id = inputId, class = "mobile-element", type = "hidden")
+	)
+}
