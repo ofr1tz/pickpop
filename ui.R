@@ -6,6 +6,7 @@ ui <- bootstrapPage(
 	tags$head(
 		tags$style(HTML(
 			'html, body {width:100%;height:100%; font-family:Consolas, "Ubuntu Mono", monospace;}',
+			'#pop{font-size: 25px;font-style: bold;}',
 			'.leaflet-container { background: #d4dadc; }'
 	))),
 	mobileDetect("isMobile"),
@@ -21,13 +22,12 @@ ui <- bootstrapPage(
 			"in the area."
 		),
 		fixedRow(
-			id = "latlon",
+			id = "latlon", hidden = T,
 			column(6,numericInput("lat", "Latitude", value = 0, min = -90, max = 90)),
 			column(6, numericInput("lon", "Longitude", value = 0, min = -180, max = 180))
 		),
 		sliderInput("radius", "Radius (km)", value = 100, min = 1, max = 1000, step = 1, ticks = F),
-		textOutput("pop"),
-		tags$head(tags$style("#pop{font-size: 25px;font-style: bold;}"))
+		textOutput("pop")
 		
 	) #, 
 	
