@@ -2,7 +2,7 @@ server <- function(input, output, session) {
 	
 	# hide lat/lon numeric input on mobile
 	observe({ toggleElement(id = "latlon", condition = !input$isMobile) })
-	
+
 	# get pop data with geometry from api
 	response <- reactive({
 		lat <- replace_na(input$lat, 0)
