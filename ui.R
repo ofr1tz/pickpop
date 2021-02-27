@@ -16,6 +16,11 @@ ui <- bootstrapPage(
 	absolutePanel(
 		width = 275, top = 10, left = 30, draggable = T,
 		titlePanel("pickPop"),
+		circleButton(
+			inputId = "about", icon = icon("question"), 
+			size = "xs", style = "position:absolute;right:10em;top:2em",  
+			onclick ="window.open('https://www.oliverfritz.de/portfolio/pickpop', '_blank')"
+		),
 		helpText(
 			"Click on the map, choose a radius ",
 			"and find out how many people live ", 
@@ -31,11 +36,6 @@ ui <- bootstrapPage(
 	),
 	
 	absolutePanel(
-		bottom = 40, right = 10, 
-		circleButton(
-			inputId = "about", icon = icon("question"), 
-			size = "xs",  
-			onclick ="window.open('https://www.oliverfritz.de/portfolio/pickpop', '_blank')"
-		)
+		bottom = 40, right = 10
 	)
 )
