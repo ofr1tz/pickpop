@@ -18,7 +18,7 @@ ui <- bootstrapPage(
 		titlePanel("pickPop"),
 		circleButton(
 			inputId = "about", icon = icon("question"), 
-			size = "xs", style = "position:absolute;right:10em;top:2em",  
+			size = "xs", style = "position:absolute;right:7em;top:2em",  
 			onclick ="window.open('https://www.oliverfritz.de/portfolio/pickpop', '_blank')"
 		),
 		helpText(
