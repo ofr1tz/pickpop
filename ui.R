@@ -7,7 +7,8 @@ ui <- bootstrapPage(
 		tags$style(HTML(
 			'html, body {width:100%;height:100%; font-family:Consolas, "Ubuntu Mono", monospace;}',
 			'#pop{font-size: 25px;font-style: bold;}',
-			'.leaflet-container { background: #d4dadc; }'
+			'.leaflet-container { background: #d4dadc; }',
+			'.loading-spinner { position:absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; margin: 0px auto !important;}'
 	))),
 	mobileDetect("isMobile"),
 	
