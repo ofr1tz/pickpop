@@ -34,9 +34,5 @@ ui <- bootstrapPage(
 		),
 		sliderInput("radius", "Radius (km)", value = 100, min = 1, max = 1000, step = 1, ticks = F),
 		textOutput("pop")
-	),
-	
-	absolutePanel(
-		bottom = 40, right = 10
 	)
 )
