@@ -1,7 +1,30 @@
 server <- function(input, output, session) {
 	
-	# hide lat/lon numeric input on mobile
+	# hide lat/lon numeric input on mobile (see https://g3rv4.com/2017/08/shiny-detect-mobile-browsers) 
 	observe({ toggleElement(id = "latlon", condition = !input$isMobile) })
+	
+	
+	# parse input parameters from url (see https://stackoverflow.com/a/65552636)
+	observe({
+		query <- parseQueryString(session$clientData$url_search)
+		if (!is.null(query[["lat"]])) {
+			updateNumericInput(session, "lat", value = as.numeric(query[["lat"]]))
+		}
+		if (!is.null(query[["lon"]])) {
+			updateNumericInput(session, "lon", value = as.numeric(query[["lon"]]))
+		}
+		if (!is.null(query[["radius"]])) {
+			updateNumericInput(session, "radius", value = as.numeric(query[["radius"]]))
+		}
+	})
+	
+	# update url query string
+	observe({
+		updateQueryString(
+			glue("?lat={input$lat}&lon={input$lon}&radius={input$radius}")
+		)
+		
+	})
 
 	# get pop data with geometry from api
 	response <- reactive({
